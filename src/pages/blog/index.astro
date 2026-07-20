@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+<BaseLayout title="학습 기록 | 잠탱이 Dev Lab">
+  <header class="page-head container"><div class="eyebrow">Notes</div><h1>학습 기록</h1><p class="lead">읽은 내용을 옮기는 대신, 직접 실행하고 확인한 내용을 남깁니다.</p></header>
+  <section class="container post-list">
+    {posts.map((post) => (
+      <a class="post-row" href={`${base}blog/${post.id}/`}>
+        <div class="meta">{post.data.publishedAt.toLocaleDateString('ko-KR')}</div>
+        <div><h2>{post.data.title}</h2><p class="lead">{post.data.description}</p><div class="tags">{post.data.tags.map((tag) => <span class="tag">{tag}</span>)}</div></div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

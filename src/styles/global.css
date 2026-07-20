@@ -1,0 +1,63 @@
+:root {
+  --bg: #0a0d14;
+  --surface: #111725;
+  --surface-soft: #161e2f;
+  --text: #eef2ff;
+  --muted: #a9b2c7;
+  --line: #283249;
+  --accent: #80e1c1;
+  --accent-2: #99b8ff;
+  --max: 1120px;
+  font-family: Inter, Pretendard, "Noto Sans KR", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: radial-gradient(circle at top right, #17213a 0, var(--bg) 34rem); color: var(--text); line-height: 1.75; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+code { font-family: "Cascadia Code", "JetBrains Mono", monospace; }
+.container { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(10,13,20,.82); backdrop-filter: blur(18px); }
+.nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { font-weight: 850; letter-spacing: -.03em; }
+.brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 1rem; color: var(--muted); font-size: .95rem; }
+.nav-links a:hover { color: var(--text); }
+main { min-height: calc(100vh - 150px); }
+.hero { padding: 7rem 0 4rem; }
+.eyebrow { color: var(--accent); font-weight: 750; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -.04em; }
+h1 { font-size: clamp(2.7rem, 8vw, 5.7rem); max-width: 900px; margin: .65rem 0 1.25rem; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.lead { max-width: 760px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.24rem); }
+.actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 1.1rem; border: 1px solid var(--line); border-radius: 12px; font-weight: 700; background: var(--surface); }
+.button.primary { background: var(--accent); color: #07110e; border-color: transparent; }
+.section { padding: 3.5rem 0; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.card { border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(22,30,47,.95), rgba(13,18,29,.95)); padding: 1.35rem; transition: transform .18s ease, border-color .18s ease; }
+.card:hover { transform: translateY(-3px); border-color: #465570; }
+.card h3 { margin: .35rem 0 .65rem; font-size: 1.25rem; }
+.card p { color: var(--muted); margin: 0; }
+.meta { color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+.tag { border: 1px solid var(--line); border-radius: 999px; padding: .22rem .6rem; color: var(--accent-2); font-size: .78rem; }
+.page-head { padding: 5rem 0 2rem; }
+.post-list { display: grid; gap: 1rem; }
+.post-row { display: grid; grid-template-columns: 160px 1fr; gap: 1.2rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+.prose { width: min(calc(100% - 2rem), 780px); margin: 0 auto; padding: 4rem 0 6rem; }
+.prose h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+.prose h2 { margin-top: 3rem; }
+.prose p, .prose li { color: #d5dbea; }
+.prose pre { overflow-x: auto; border: 1px solid var(--line); background: #080b12 !important; padding: 1rem; border-radius: 14px; }
+.prose :not(pre) > code { background: var(--surface-soft); padding: .15rem .35rem; border-radius: 5px; color: var(--accent); }
+.prose blockquote { margin-inline: 0; border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--muted); }
+.site-footer { padding: 2.4rem 0; color: var(--muted); border-top: 1px solid var(--line); font-size: .9rem; }
+@media (max-width: 760px) {
+  .nav-links { gap: .7rem; font-size: .86rem; }
+  .grid { grid-template-columns: 1fr; }
+  .post-row { grid-template-columns: 1fr; gap: .2rem; }
+  .hero { padding-top: 4.5rem; }
+}

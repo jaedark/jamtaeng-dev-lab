@@ -1,0 +1,15 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { title, description, publishedAt, tags = [] } = Astro.props;
+const date = new Intl.DateTimeFormat('ko-KR', { dateStyle: 'long' }).format(publishedAt);
+---
+<BaseLayout title={`${title} | 잠탱이 Dev Lab`} description={description}>
+  <article class="prose">
+    <div class="eyebrow">Engineering Note</div>
+    <h1>{title}</h1>
+    <p class="meta">{date} · {tags.join(' · ')}</p>
+    <p class="lead">{description}</p>
+    <hr />
+    <slot />
+  </article>
+</BaseLayout>
