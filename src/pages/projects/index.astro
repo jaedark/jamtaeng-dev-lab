@@ -1,13 +1,44 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="프로젝트 | 잠탱이 Dev Lab">
-  <header class="page-head container"><div class="eyebrow">Projects</div><h1>프로젝트</h1><p class="lead">학습 내용을 실제 서비스 구조로 연결합니다.</p></header>
+<BaseLayout title="프로젝트 | 잠탱이 Dev Lab" description="FactoryOps AI의 구현 현황과 기술 로드맵을 정리합니다.">
+  <header class="page-head container">
+    <div class="eyebrow">Flagship Project</div>
+    <h1>FactoryOps AI</h1>
+    <p class="lead">제조 장애 이력을 검색하고 분석해 대응 방법과 보고서까지 연결하는 Agentic Manufacturing Operations Platform을 만들고 있습니다.</p>
+    <div class="actions">
+      <a class="button primary" href="https://github.com/jaedark/factoryops-ai" target="_blank" rel="noreferrer">소스 코드 보기</a>
+    </div>
+  </header>
+
   <section class="section container">
     <div class="grid">
-      <article class="card"><div class="eyebrow">In progress</div><h2>AI Operations Assistant</h2><p>운영 문서와 장애 이력을 검색하고, 장애 내용을 요약하며 대응 절차를 제안하는 시스템입니다.</p><div class="tags"><span class="tag">ASP.NET Core</span><span class="tag">FastAPI</span><span class="tag">RAG</span></div></article>
-      <article class="card"><div class="eyebrow">Lab</div><h2>C# Runtime Labs</h2><p>값·참조 형식, GC, async/await, 동시성을 작은 코드로 검증합니다.</p></article>
-      <article class="card"><div class="eyebrow">Lab</div><h2>Python AI Labs</h2><p>Python 문법부터 LLM API와 벡터 검색까지 단계적으로 구현합니다.</p></article>
+      <article class="card">
+        <div class="eyebrow">Now</div>
+        <h2>Backend Foundation</h2>
+        <p>FastAPI, Pydantic, SQLAlchemy, SQLite와 Service / Repository 구조를 기반으로 제조 장애 Create / Read API를 구현했습니다.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span></div>
+      </article>
+      <article class="card">
+        <div class="eyebrow">Next</div>
+        <h2>Retrieval & RAG</h2>
+        <p>Keyword Search의 한계를 확인한 뒤 Vector Search와 RAG를 도입해 의미 기반 장애 검색과 근거 기반 응답으로 확장합니다.</p>
+        <div class="tags"><span class="tag">Keyword Search</span><span class="tag">Vector Search</span><span class="tag">RAG</span></div>
+      </article>
+      <article class="card">
+        <div class="eyebrow">Target</div>
+        <h2>Agentic AI Platform</h2>
+        <p>Tool Calling, Agent Orchestration, MCP를 이용해 장애 이력 조회, 원인 분석, 대응 추천, 보고서 생성을 하나의 업무 흐름으로 연결합니다.</p>
+        <div class="tags"><span class="tag">Agent</span><span class="tag">Orchestration</span><span class="tag">MCP</span></div>
+      </article>
     </div>
+  </section>
+
+  <section class="section container">
+    <div class="eyebrow">Architecture Direction</div>
+    <h2>최종 목표 구조</h2>
+    <article class="card">
+      <p>사용자 요청 → FactoryOps AI API → AI Orchestrator → Incident / Knowledge / Maintenance / Report 기능 → Tools / MCP → Incident DB / External Systems → Vector Search / RAG → LLM 흐름을 단계적으로 구현합니다.</p>
+    </article>
   </section>
 </BaseLayout>
