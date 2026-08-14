@@ -2,27 +2,33 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL;
-const posts = (await getCollection('blog', ({ data }) => !data.draft && !data.tags.includes('Concept')))
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const devPosts = allPosts
+  .filter((post) => !post.data.tags.includes('Concept'))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+const conceptPosts = allPosts
+  .filter((post) => post.data.tags.includes('Concept'))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
   .slice(0, 3);
 ---
 <BaseLayout>
   <section class="hero container">
-    <div class="eyebrow">FactoryOps AI · Build · Learn · Record</div>
-    <h1>제조 현장 문제를<br />Agentic AI로 풀어갑니다.</h1>
-    <p class="lead">FactoryOps AI를 직접 구현하며 FastAPI, 검색, RAG, Tool Calling, Agent Orchestration, MCP까지 단계적으로 확장합니다. 개발 과정과 반복해서 볼 핵심 개념을 나누어 기록합니다.</p>
+    <div class="eyebrow">Build · Learn · Record</div>
+    <h1>직접 만들고,<br />이해하고, 기록합니다.</h1>
+    <p class="lead">AI, Backend, Architecture를 중심으로 직접 구현한 과정과 반복해서 참고할 기술 개념을 축적합니다. 하나의 프로젝트가 끝나도 다음 프로젝트와 학습으로 계속 이어지는 개인 개발 지식 베이스입니다.</p>
     <div class="actions">
-      <a class="button primary" href={`${base}blog/`}>개발 기록 보기</a>
-      <a class="button" href={`${base}concepts/`}>핵심 개념 보기</a>
-      <a class="button" href={`${base}projects/`}>FactoryOps AI 보기</a>
-      <a class="button" href="https://github.com/jaedark/factoryops-ai" target="_blank" rel="noreferrer">GitHub 소스</a>
+      <a class="button primary" href={`${base}blog/`}>개발 기록</a>
+      <a class="button" href={`${base}concepts/`}>기술 노트</a>
+      <a class="button" href={`${base}projects/`}>프로젝트</a>
+      <a class="button" href="https://github.com/jaedark" target="_blank" rel="noreferrer">GitHub</a>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><div><div class="eyebrow">Latest Engineering Notes</div><h2>최근 개발 기록</h2></div></div>
+    <div class="section-heading"><div><div class="eyebrow">Engineering Log</div><h2>최근 개발 기록</h2></div></div>
     <div class="grid">
-      {posts.map((post) => (
+      {devPosts.map((post) => (
         <a class="card" href={`${base}blog/${post.id}/`}>
           <div class="meta">{post.data.publishedAt.toLocaleDateString('ko-KR')}</div>
           <h3>{post.data.title}</h3>
@@ -34,20 +40,34 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && !data.ta
   </section>
 
   <section class="section container">
-    <div class="eyebrow">Knowledge Base</div>
-    <h2>계속 다시 볼 핵심 개념</h2>
+    <div class="section-heading"><div><div class="eyebrow">Knowledge Base</div><h2>기술 노트</h2></div></div>
     <div class="grid">
-      <a class="card" href={`${base}concepts/`}><h3>AI 핵심 개념 노트</h3><p>Embedding, Vector Search, RAG, Tool Calling, Agent, MCP 등 프로젝트와 함께 배우는 개념을 별도로 축적합니다.</p><div class="tags"><span class="tag">Concepts</span><span class="tag">AI</span></div></a>
+      {conceptPosts.map((post) => (
+        <a class="card" href={`${base}blog/${post.id}/`}>
+          <div class="meta">{post.data.publishedAt.toLocaleDateString('ko-KR')}</div>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          <div class="tags">{post.data.tags.filter((tag) => tag !== 'Concept').map((tag) => <span class="tag">{tag}</span>)}</div>
+        </a>
+      ))}
     </div>
   </section>
 
   <section class="section container">
-    <div class="eyebrow">Project Roadmap</div>
-    <h2>이 프로젝트에서 검증할 것</h2>
+    <div class="eyebrow">Projects</div>
+    <h2>프로젝트에서 기술을 검증합니다</h2>
     <div class="grid">
-      <div class="card"><h3>1. Backend & Retrieval</h3><p>FastAPI, SQLAlchemy, Keyword Search, Vector Search를 직접 구현하며 검색 기반을 만듭니다.</p><div class="tags"><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span><span class="tag">Vector Search</span></div></div>
-      <div class="card"><h3>2. RAG & Tool Calling</h3><p>검색 결과를 LLM 응답으로 연결하고, 필요한 기능을 Tool로 분리해 실제 업무 흐름을 만듭니다.</p><div class="tags"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Tool Calling</span></div></div>
-      <div class="card"><h3>3. Agentic AI & MCP</h3><p>Agent Orchestration과 MCP를 통해 장애 분석, 지식 조회, 대응 추천, 보고서 생성을 연결합니다.</p><div class="tags"><span class="tag">Agent</span><span class="tag">Orchestration</span><span class="tag">MCP</span></div></div>
+      <a class="card" href={`${base}projects/`}>
+        <div class="eyebrow">Active</div>
+        <h3>FactoryOps AI</h3>
+        <p>제조 장애 검색에서 시작해 RAG, Tool Calling, Agent Orchestration, MCP까지 단계적으로 확장하는 현재 프로젝트입니다.</p>
+        <div class="tags"><span class="tag">AI</span><span class="tag">Backend</span><span class="tag">Agent</span></div>
+      </a>
+      <article class="card">
+        <div class="eyebrow">Next</div>
+        <h3>다음 프로젝트를 위한 자리</h3>
+        <p>새 프로젝트는 기존 기술 노트를 재사용하면서 별도 프로젝트 기록으로 추가합니다. 블로그 전체 구조는 특정 프로젝트에 종속되지 않습니다.</p>
+      </article>
     </div>
   </section>
 </BaseLayout>
