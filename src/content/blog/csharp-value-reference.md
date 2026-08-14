@@ -2,7 +2,7 @@
 title: "C#에서 객체를 대입할 때 실제로 복사되는 것은 무엇일까?"
 description: "값 형식과 참조 형식을 Stack과 Heap이 아닌 복사 의미를 중심으로 다시 정리했습니다."
 publishedAt: 2026-07-20
-tags: [CSharp, CLR, Memory]
+tags: [Concept, CSharp, CLR, Memory]
 draft: false
 ---
 
