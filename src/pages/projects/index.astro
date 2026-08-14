@@ -1,44 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="프로젝트 | 잠탱이 Dev Lab" description="FactoryOps AI의 구현 현황과 기술 로드맵을 정리합니다.">
+<BaseLayout title="프로젝트 | 잠탱이 Dev Lab" description="진행한 프로젝트와 각 프로젝트에서 검증한 기술을 정리합니다.">
   <header class="page-head container">
-    <div class="eyebrow">Flagship Project</div>
-    <h1>FactoryOps AI</h1>
-    <p class="lead">제조 장애 이력을 검색하고 분석해 대응 방법과 보고서까지 연결하는 Agentic Manufacturing Operations Platform을 만들고 있습니다.</p>
-    <div class="actions">
-      <a class="button primary" href="https://github.com/jaedark/factoryops-ai" target="_blank" rel="noreferrer">소스 코드 보기</a>
-    </div>
+    <div class="eyebrow">Project Archive</div>
+    <h1>프로젝트</h1>
+    <p class="lead">프로젝트별 구현 과정과 결과는 이곳에서 관리하고, 프로젝트를 넘어 재사용할 수 있는 개념은 기술 노트로 분리합니다.</p>
   </header>
-
   <section class="section container">
     <div class="grid">
-      <article class="card">
-        <div class="eyebrow">Now</div>
-        <h2>Backend Foundation</h2>
-        <p>FastAPI, Pydantic, SQLAlchemy, SQLite와 Service / Repository 구조를 기반으로 제조 장애 Create / Read API를 구현했습니다.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span></div>
-      </article>
-      <article class="card">
-        <div class="eyebrow">Next</div>
-        <h2>Retrieval & RAG</h2>
-        <p>Keyword Search의 한계를 확인한 뒤 Vector Search와 RAG를 도입해 의미 기반 장애 검색과 근거 기반 응답으로 확장합니다.</p>
-        <div class="tags"><span class="tag">Keyword Search</span><span class="tag">Vector Search</span><span class="tag">RAG</span></div>
-      </article>
-      <article class="card">
-        <div class="eyebrow">Target</div>
-        <h2>Agentic AI Platform</h2>
-        <p>Tool Calling, Agent Orchestration, MCP를 이용해 장애 이력 조회, 원인 분석, 대응 추천, 보고서 생성을 하나의 업무 흐름으로 연결합니다.</p>
-        <div class="tags"><span class="tag">Agent</span><span class="tag">Orchestration</span><span class="tag">MCP</span></div>
-      </article>
+      <article class="card"><div class="eyebrow">Active</div><h2>FactoryOps AI</h2><p>제조 장애 이력을 기반으로 검색, 원인 분석, 대응 추천, 보고서 생성까지 연결하는 Agentic AI 프로젝트입니다.</p><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Vector Search</span><span class="tag">RAG</span></div></article>
+      <article class="card"><div class="eyebrow">Future</div><h2>다음 프로젝트</h2><p>새 프로젝트가 시작되면 이곳에 독립적으로 추가합니다. 기존 개발 기록과 기술 노트는 그대로 누적됩니다.</p></article>
     </div>
-  </section>
-
-  <section class="section container">
-    <div class="eyebrow">Architecture Direction</div>
-    <h2>최종 목표 구조</h2>
-    <article class="card">
-      <p>사용자 요청 → FactoryOps AI API → AI Orchestrator → Incident / Knowledge / Maintenance / Report 기능 → Tools / MCP → Incident DB / External Systems → Vector Search / RAG → LLM 흐름을 단계적으로 구현합니다.</p>
-    </article>
   </section>
 </BaseLayout>
