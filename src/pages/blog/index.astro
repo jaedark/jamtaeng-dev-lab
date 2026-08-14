@@ -5,11 +5,11 @@ const base = import.meta.env.BASE_URL;
 const posts = (await getCollection('blog', ({ data }) => !data.draft && !data.tags.includes('Concept')))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 ---
-<BaseLayout title="개발 기록 | 잠탱이 Dev Lab" description="FactoryOps AI를 구현하며 겪은 문제, 설계 판단, 검색·RAG·Agent·MCP 학습 내용을 기록합니다.">
+<BaseLayout title="개발 기록 | 잠탱이 Dev Lab" description="프로젝트 구현, 문제 해결, 설계 판단, 테스트와 시행착오를 기록합니다.">
   <header class="page-head container">
-    <div class="eyebrow">FactoryOps AI Engineering Notes</div>
+    <div class="eyebrow">Engineering Log</div>
     <h1>개발 기록</h1>
-    <p class="lead">개념을 옮겨 적기보다 직접 구현하고 실패하고 수정하면서 확인한 내용을 남깁니다. 각 글은 FactoryOps AI의 실제 개발 단계와 연결됩니다.</p>
+    <p class="lead">특정 프로젝트에 한정하지 않고 직접 구현한 과정, 문제 해결, 설계 판단과 테스트 결과를 남깁니다. 프로젝트가 달라져도 경험과 판단 근거가 이어지도록 기록합니다.</p>
   </header>
   <section class="container post-list">
     {posts.map((post) => (
