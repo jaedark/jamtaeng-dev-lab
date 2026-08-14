@@ -5,17 +5,24 @@ const base = import.meta.env.BASE_URL;
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.tags.includes('Concept')))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 ---
-<BaseLayout title="핵심 개념 | 잠탱이 AI Dev Lab" description="AI 핵심 개념을 정리합니다.">
+<BaseLayout title="기술 노트 | 잠탱이 Dev Lab" description="AI, Backend, Database, Architecture 등 반복해서 참고할 기술 개념을 프로젝트와 분리해 정리합니다.">
   <header class="page-head container">
-    <div class="eyebrow">AI Core Concepts</div>
-    <h1>핵심 개념</h1>
-    <p class="lead">Embedding, Vector Search, RAG, Tool Calling, Agent, MCP처럼 반복해서 참고할 개념을 별도로 정리합니다.</p>
+    <div class="eyebrow">Technology Knowledge Base</div>
+    <h1>기술 노트</h1>
+    <p class="lead">프로젝트와 독립적으로 오래 참고할 개념을 정리합니다. AI뿐 아니라 Python, C#, Backend, Database, Cloud, Architecture까지 학습 범위와 함께 확장합니다.</p>
   </header>
+  <section class="section container">
+    <div class="grid">
+      <article class="card"><h3>AI / LLM</h3><p>Embedding, Vector Search, RAG, Tool Calling, Agent, MCP 등 AI 애플리케이션 핵심 개념</p></article>
+      <article class="card"><h3>Backend / Data</h3><p>API, 데이터베이스, 검색, 캐시, 비동기 처리 등 서비스 구현에 필요한 개념</p></article>
+      <article class="card"><h3>Language / Architecture</h3><p>Python, C#, 설계 원칙, 테스트, 시스템 구조처럼 프로젝트를 넘어 재사용할 지식</p></article>
+    </div>
+  </section>
   <section class="container post-list">
     {posts.map((post) => (
       <a class="post-row" href={`${base}blog/${post.id}/`}>
         <div class="meta">{post.data.publishedAt.toLocaleDateString('ko-KR')}</div>
-        <div><h2>{post.data.title}</h2><p class="lead">{post.data.description}</p></div>
+        <div><h2>{post.data.title}</h2><p class="lead">{post.data.description}</p><div class="tags">{post.data.tags.filter((tag) => tag !== 'Concept').map((tag) => <span class="tag">{tag}</span>)}</div></div>
       </a>
     ))}
   </section>
